@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <UID>"
+    exit 1
+fi
+
+USERNAME=$(getent passwd "$1" | cut -d: -f1)
+HOMEDIR=$(getent passwd "$1" | cut -d: -f6)
+SHELL=$(getent passwd "$1" | cut -d: -f7)
+GROUPS=$(id -Gn "$USERNAME")
+
+echo "User Information"
+echo "Name      : $USERNAME"
+echo "Home Dir  : $HOMEDIR"
+echo "Shell     : $SHELL"
+echo "Groups    : $GROUPS"
