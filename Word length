@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while true; do
+    echo "Please enter a word (or type 'exit' to quit):"
+    read word
+
+    if [ "$word" = "exit" ]; then
+        echo "Exiting the program."
+        break
+    fi
+
+    length=${#word}
+    echo "The length of '$word' is $length characters"
+done
