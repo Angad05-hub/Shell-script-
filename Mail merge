@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 recipienys.csv template.txt"
+    exit 1
+fi
+
+CSV_FILE="$1"
+TEMPLATE_FILE="$2"
+TEMPLATE=$(cat "$TEMPLATE_FILE")
+tail -n +2 "$CSV_FILE" | while IFS=',' read -r name email; do
+    MESSAGE=$(echo "$TEMPLATE" | sed "s/{{name}}/$name/g")
+    echo "Email sent to $name <$email>"
+done
